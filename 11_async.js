@@ -1,4 +1,4 @@
-//const {sleep} = require("../exercices/10_promise");
+const {sleep} = require("../es6/10_promise");
 
 /**
  * Créez une fonction synchrone qui attend 2 seconde puis execute le callback passé en paramètre
@@ -12,6 +12,7 @@
  * 
  */
 const usingThen = (cb) => {
+    sleep().then(() => cb()); // Attendre 2 secondes, puis exécuter le callback
 }
 
 /**
@@ -25,8 +26,9 @@ const usingThen = (cb) => {
  *   - ne pas utiliser .then
  */
 
-const usingAwait = (cb) => {
-
+const usingAwait = async (cb) => {
+    await sleep(); 
+  cb();  
 }
 
 /**
@@ -41,12 +43,20 @@ const usingAwait = (cb) => {
  * url de test: https://jsonplaceholder.typicode.com/todos/1
  */
 
-//décommentez la ligne suivante une fois le package installé
-//const axios = require("axios");
+
+const axios = require("axios");
 
 const apiResponse = async (url) => {
+  try {
+    const response = await axios.get(url);
+    return response.data; 
+  } catch (error) {
+    console.error('Erreur lors de la requête API:', error);
+  }
+};
 
-}
+module.exports = { usingThen, usingAwait, apiResponse };
 
 
-module.exports = {usingThen, usingAwait, apiResponse};
+
+//axios.get(url) : axios.get fait une requête HTTP GET à l'URL passée en paramètre.

@@ -10,6 +10,12 @@
  *  - ne pas utiliser la fonction concat de String
  */
 
-const concat = (firstName, lastName) => {}
+const concat = (firstName, lastName) =>  `${firstName} ${lastName}`;
 
 module.exports = {concat};
+
+
+
+
+
+/*${firstName} ${lastName} cette syntaxe c'est pou inserer la valeur de firstname et last name dans une chaine de caractere et les separant ainsi par un espace " " */
